@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -45,11 +46,12 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Post $post)
     {
-        return view('show',compact('post'));
+        $category = Category::find($post->id);
+        return view('show')->with('post',$post)->with('category',$category);
     }
 
     /**
