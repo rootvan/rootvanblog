@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id','desc')->get();
+        Carbon::setLocale('tr');
+        $posts = Post::latest()->get();
         return view('home')->with('posts',$posts);
     }
 
