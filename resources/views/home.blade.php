@@ -18,6 +18,12 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-8 col-lg-offset-2">
+            @foreach(\App\Post::all() as $post)
+                <h2>{{$post->title}}</h2>
+                @endforeach
+        </div>
     </div>
 </div>
 @endsection
