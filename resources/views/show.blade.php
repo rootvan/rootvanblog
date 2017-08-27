@@ -8,7 +8,12 @@
                 <h2 class="page-header">{{$post->title}}</h2>
                 <p>{{$post->content}}</p>
                 <hr>
-                <p>{{$category->category_name}}</p>
+                <p>{{$post->category->category_name}}</p>
+                <h3>Yorumlar</h3>
+                @foreach($post->comments as $comment)
+                    <h4>{{$comment->username}}</h4>
+                    <p>{{$comment->comment}} <small>{{$comment->created_at->diffForHumans()}}</small></p>
+                @endforeach
             </div>
         </div>
     </div>
