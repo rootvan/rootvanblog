@@ -50,8 +50,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $category = Category::find($post->id);
-        return view('show')->with('post',$post)->with('category',$category);
+        return view('show')->with('post',$post);
     }
 
     /**
