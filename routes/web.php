@@ -17,5 +17,32 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//POSTS
+
+//Tüm Postları Görüntüle
 Route::get('/home', 'PostController@index')->name('home');
+
+//Yeni Post oluştur Sayfası
+Route::get('/posts/create','PostController@create');
+
+//Yeni Post Oluştur
+Route::post('/posts/create','PostController@store');
+
+//Düzenle Sayfası
+
+Route::get('/posts/{post}/edit','PostController@edit');
+
+
+//Düzenle
+Route::post('/posts/{post}','PostController@update');
+
+//Tekil Post Görüntüle
 Route::get('/posts/{post}', 'PostController@show');
+
+//Sil
+
+
+
+
+
+
