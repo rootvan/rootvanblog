@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('root.create');
     }
 
     /**
@@ -39,7 +39,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'content' => 'required',
+            'cover' => 'required',
+            'category_id' => 'required'
+        ]);
+        //Request verisini kullanarak yeni bir post oluştur.
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->cover = $request->cover;
+        $post->category_id = $request->category_id;
+
+
+
+        //Veriyi veritabanına kaydet
+        $post->save();
+        //Anasayfaya yönlendir
+        return redirect('home');
     }
 
     /**
@@ -57,11 +75,11 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Post $post)
     {
-        //
+        return view('root.edit')->with('post',$post);
     }
 
     /**
@@ -73,7 +91,23 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'content' => 'required',
+            'cover' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        //Post içeriklerini request'e göre güncelle
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->cover = $request->cover;
+        $post->category_id = $request->category_id;
+
+        //Veriyi veritabanına kaydet
+        $post->save();
+        //Anasayfaya yönlendir
+        return redirect('home');
     }
 
     /**
