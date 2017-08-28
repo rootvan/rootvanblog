@@ -40,7 +40,7 @@ Route::post('/posts/{post}','PostController@update');
 Route::get('/posts/{post}', 'PostController@show');
 
 //Sil
-
+Route::delete('posts/{post}', 'PostController@destroy');
 
 
 
